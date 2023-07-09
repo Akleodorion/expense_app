@@ -28,9 +28,11 @@ class _Expenses extends State<Expenses> {
     return Column(
       children: [
         const Text('Hello'),
-        ExpensesList(
-          expenses: _registeredExpenses,
-        )
+        Expanded(
+          child: ExpensesList(
+            expenses: _registeredExpenses,
+          ),
+        ),
       ],
     );
   }
