@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/expense.dart';
 import '../widgets/expenses_list.dart';
+import '../views/new_expense.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -23,6 +24,25 @@ class _Expenses extends State<Expenses> {
         category: Category.travel)
   ];
 
+  void addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+
+    Navigator.pop(context);
+  }
+
+  void _showNewExpenseModal() {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return NewExpense(
+            onAddExpense: addExpense,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +50,7 @@ class _Expenses extends State<Expenses> {
         title: const Text('My title'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _showNewExpenseModal,
             icon: const Icon(Icons.add),
           ),
         ],
