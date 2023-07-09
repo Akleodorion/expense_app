@@ -32,6 +32,25 @@ class _Expenses extends State<Expenses> {
     Navigator.pop(context);
   }
 
+  void removeExpense(Expense expense) {
+    var index = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('Item deleted'),
+      action: SnackBarAction(
+        label: 'undo',
+        onPressed: () {
+          setState(() {
+            _registeredExpenses.insert(index, expense);
+          });
+        },
+      ),
+    ));
+  }
+
   void _showNewExpenseModal() {
     showModalBottomSheet(
         isScrollControlled: true,
@@ -61,6 +80,7 @@ class _Expenses extends State<Expenses> {
           Expanded(
             child: ExpensesList(
               expenses: _registeredExpenses,
+              onDismissed: removeExpense,
             ),
           ),
         ],
