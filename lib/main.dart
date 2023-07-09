@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'views/expenses.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: Scaffold(
-      body: Expenses(),
-    ),
+  runApp(MaterialApp(
+    theme: ThemeData(useMaterial3: true),
+    home: const Expenses(),
   ));
 }

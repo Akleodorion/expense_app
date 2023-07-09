@@ -25,15 +25,26 @@ class _Expenses extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('Hello'),
-        Expanded(
-          child: ExpensesList(
-            expenses: _registeredExpenses,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My title'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
           ),
-        ),
-      ],
+        ],
+      ),
+      body: Column(
+        children: [
+          const Text('Hello'),
+          Expanded(
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
